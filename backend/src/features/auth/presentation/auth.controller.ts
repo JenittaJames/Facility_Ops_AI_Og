@@ -4,6 +4,8 @@ import { ApiResponse } from "../../../shared/responses/ApiResponse";
 import { HttpStatusCode } from "../../../shared/enums/HttpStatusCode";
 import { LoginUserUseCase } from "../application/useCases/loginUserUseCase";
 import { VerifyOtpUseCase } from "../application/useCases/verifyOtpUseCase";
+import { ResendOtpUseCase } from "../application/useCases/resendOtpUseCase";
+import { RefreshTokenUseCase } from "../application/useCases/refreshTokenUseCase";
 
 
 
@@ -11,7 +13,9 @@ export class AuthController {
     constructor(
         private readonly registerUserUseCase : RegisterUserUseCase,
         private readonly loginUserUseCase : LoginUserUseCase,
-        private readonly verifyOtpUseCase : VerifyOtpUseCase
+        private readonly verifyOtpUseCase : VerifyOtpUseCase,
+        private readonly resendOtpUseCase : ResendOtpUseCase,
+        private readonly refreshTokenUseCase : RefreshTokenUseCase
     ){}
 
 
@@ -23,7 +27,7 @@ export class AuthController {
 
             const response : ApiResponse<typeof user> = {
                 success : true,
-                message : "User created successfully",
+                message : "OTP send successfully",
                 data : user
             };
 
@@ -40,12 +44,12 @@ export class AuthController {
         try {
             const data = req.body
 
-            const user = await this.verifyOtpUseCase.execute(data);
+            const result = await this.verifyOtpUseCase.execute(data);
 
-            const response : ApiResponse<typeof user> = {
+            const response : ApiResponse<typeof result> = {
                 success : true,
                 message : "OTP verified successfully",
-                data : user
+                data : result
             }
             
             res.status(HttpStatusCode.OK).json(response)
@@ -54,6 +58,29 @@ export class AuthController {
             next(error)
         }
     }
+
+
+
+
+    async resendOtp(req:Request,res:Response,next:NextFunction) {
+        try {
+            const {email,purpose} = req.body
+
+            const result = await this.resendOtpUseCase.execute(email,purpose)
+
+            const response : ApiResponse<typeof result> = {
+                success : true,
+                message : "OTP verified successfully",
+                data : result
+            }
+
+            res.status(HttpStatusCode.OK).json(response)
+
+        } catch (error) {
+            next(error)
+        }
+    }
+    
 
 
 
@@ -70,6 +97,28 @@ export class AuthController {
             }
             
             res.status(HttpStatusCode.OK).json(response)
+
+        } catch (error) {
+            next(error)
+        }
+    }
+
+
+
+    async refreshToken(req:Request,res:Response,next:NextFunction){
+        try {
+            const { refreshToken } = req.body;
+
+        const result =
+            await this.refreshTokenUseCase.execute(refreshToken);
+
+        const response: ApiResponse<typeof result> = {
+            success: true,
+            message: "Access token refreshed successfully",
+            data: result
+        };
+
+        res.status(HttpStatusCode.OK).json(response);
 
         } catch (error) {
             next(error)
