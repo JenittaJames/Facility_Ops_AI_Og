@@ -1,4 +1,5 @@
 import express, { json, urlencoded } from "express";
+import "dotenv/config";
 import { WinstonLogger } from "./shared/infrastructure/logging/WinstonLogger";
 import authRouter from "./features/auth/presentation/auth.route"
 import { globalErrorHandler } from "./shared/middlewares/GlobalErrorHandler";
