@@ -1,1 +1,60 @@
-<p>login-component works!</p>
+<div class="login">
+
+  <div class="login-header">
+    <h2>Login</h2>
+    <p>Welcome back to Facility Ops AI</p>
+  </div>
+
+
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+  >
+
+    <!-- Email -->
+
+    <app-input-component
+      label="Email"
+      name="email"
+      type="email"
+      placeholder="Enter your email"
+      formControlName="email">
+    </app-input-component>
+
+
+    <!-- Password -->
+
+    <app-password-input-component
+      label="Password"
+      name="password"
+      placeholder="Enter your password"
+      formControlName="password">
+    </app-password-input-component>
+
+
+    <!-- Login Button -->
+
+    <app-button-component
+      type="submit"
+      [loading]="isLoading">
+
+      Login
+
+    </app-button-component>
+
+
+    <!-- Register -->
+
+    <div class="register-link">
+
+      <span>Don't have an account?</span>
+
+      <a routerLink="/auth/register">
+        Create account
+      </a>
+
+    </div>
+
+  </form>
+
+</div>

@@ -1,1 +1,11 @@
-<p>button-component works!</p>
+<button [type]="type" [disabled]="disabled || loading">
+
+    @if (loading) {
+        <span class="loading-text">
+            Loading...
+        </span>
+    } @else {
+        <ng-content></ng-content>
+    }
+
+</button>
