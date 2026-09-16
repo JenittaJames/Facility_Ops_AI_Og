@@ -1,1 +1,20 @@
-<p>input-component works!</p>
+<div class="input-wrapper">
+
+    @if (label) {
+        <label [for]="name">
+            {{ label }}
+        </label>
+    }
+
+    <input
+        [id]="name"
+        [name]="name"
+        [type]="type"
+        [placeholder]="placeholder"
+        [value]="value"
+        [disabled]="disabled"
+        (input)="onInput($event)"
+        (blur)="onBlur()"
+    />
+
+</div>

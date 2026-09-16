@@ -1,1 +1,49 @@
-<p>register-component works!</p>
+<div class="register-container">
+    <div class="register-header">
+        <h2>Create Account</h2>
+        <p>Register your Account</p>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+        <app-input-component label="First Name" name="firstName" placeholder="Enter your first name"
+            formControlName="firstName">
+        </app-input-component>
+
+        <app-input-component label="Last Name" name="lastName" placeholder="Enter your last name"
+            formControlName="lastName">
+        </app-input-component>
+
+        <app-input-component label="email" name="email" placeholder="Enter your email" formControlName="email">
+        </app-input-component>
+
+        <app-input-component label="Phone Number" name="phoneNumber" placeholder="Enter your phone number"
+            formControlName="phoneNumber">
+        </app-input-component>
+
+        <app-password-input-component label="Password" name="password" placeholder="Enter your password"
+            formControlName="password">
+        </app-password-input-component>
+
+        <app-password-input-component label="Confirm Password" name="cPassword" placeholder="Confirm your password"
+            formControlName="cPassword">
+        </app-password-input-component>
+
+        <app-select-component label="Account Type" name="userType" placeholder="Select account Type"
+            [options]="userTypes" formControlName="userType"></app-select-component>
+
+        <app-button-component type="submit" [loading]="isLoading">Register</app-button-component>
+
+
+        <div class="register-link">
+
+            <span>Already registered?</span>
+
+            <a routerLink="/auth/login">
+                Login now
+            </a>
+
+        </div>
+
+    </form>
+</div>

@@ -1,0 +1,65 @@
+:host {
+  display: block;
+  height: 100vh;
+}
+
+.auth-layout {
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+
+  overflow: hidden;
+}
+
+.auth-left {
+  width: 50%;
+  height: 100vh;
+
+  padding: 40px 60px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background: #1f2937;
+  color: white;
+}
+
+.auth-right {
+  width: 50%;
+  height: 100vh;
+
+  box-sizing: border-box;
+
+  padding: 40px;
+
+  display: flex;
+  justify-content: center;
+
+  /* Important */
+  align-items: flex-start;
+
+  background: #f8fafc;
+
+  /* Only this side can scroll */
+  overflow-y: auto;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 450px;
+}
+
+@media (max-width: 768px) {
+
+  .auth-left {
+    display: none;
+  }
+
+  .auth-right {
+    width: 100%;
+    padding: 30px 20px;
+  }
+}

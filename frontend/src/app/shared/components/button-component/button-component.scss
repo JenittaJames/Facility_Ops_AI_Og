@@ -1,0 +1,23 @@
+button {
+    width: 100%;
+    padding: 12px 16px;
+
+    border: none;
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+    font-weight: 500;
+
+    transition: 0.2s ease;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.loading-text {
+    display: inline-block;
+}
